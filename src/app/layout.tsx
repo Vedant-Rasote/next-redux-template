@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { StoreProvider } from "./StoreProvider";
 import { Nav } from "@/app/components/Nav";
 import "./globals.css";
+import { ThemeProvider } from "@/app/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,8 +26,15 @@ export default function RootLayout({
     <StoreProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Nav />
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Nav />
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </StoreProvider>
